@@ -1,4 +1,4 @@
-name: Deploy Azure Speech Services
+name: Deploy Azure Services
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy-speech-service:
+  deploy-speech-and-language-services:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Step 3: Deploy ARM Template with Parameters
+      # Step 3: Deploy Speech Services
       - name: Deploy Speech Services ARM Template
         uses: azure/arm-deploy@v1
         with:
@@ -31,7 +31,18 @@ jobs:
           parameters: ./arm-templates/speech-service.parameters.json
           deploymentMode: Incremental
 
-      # Step 4: Validate Deployment
+      # Step 4: Deploy Language Services
+      - name: Deploy Language Services ARM Template
+        uses: azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: rg-calltranscription
+          template: ./arm-templates/language-service.json
+          parameters: ./arm-templates/language-service.parameters.json
+          deploymentMode: Incremental
+
+      # Step 5: Validate Deployment
       - name: Validate Deployment
         run: |
-          echo "Azure Speech Services deployed successfully!"
+          echo "Speech and Language Services deployed successfully!"

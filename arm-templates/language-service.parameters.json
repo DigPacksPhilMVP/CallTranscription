@@ -1,0 +1,99 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "languageserv"
+        },
+        "location": {
+            "value": "uksouth"
+        },
+        "sku": {
+            "value": "S"
+        },
+        "resourceGroupName": {
+            "value": "rg-calltranscription"
+        },
+        "resourceGroupId": {
+            "value": "/subscriptions/4f203997-0a6d-4f66-934b-7a51ea90e3b9/resourceGroups/rg-calltranscription"
+        },
+        "tagValues": {
+            "value": {}
+        },
+        "vnet": {
+            "value": {}
+        },
+        "ipRules": {
+            "value": []
+        },
+        "virtualNetworkType": {
+            "value": "None"
+        },
+        "identity": {
+            "value": {
+                "type": "SystemAssigned"
+            }
+        },
+        "privateEndpoints": {
+            "value": []
+        },
+        "storageEnabled": {
+            "value": false
+        },
+        "searchEnabled": {
+            "value": false
+        },
+        "azureSearchLocation": {
+            "value": ""
+        },
+        "azureSearchSku": {
+            "value": ""
+        },
+        "searchHostingMode": {
+            "value": ""
+        },
+        "storageResourceName": {
+            "value": ""
+        },
+        "storageLocation": {
+            "value": "uksouth"
+        },
+        "storageSkuType": {
+            "value": ""
+        },
+        "storageNewOrExisting": {
+            "value": ""
+        },
+        "storageResourceGroupName": {
+            "value": "rg-calltranscription"
+        },
+        "umiId": {
+            "value": ""
+        },
+        "isCommitmentPlanForDisconnectedContainerEnabled": {
+            "value": false
+        },
+        "commitmentPlanForDisconnectedContainer": {
+            "value": {
+                "current": {},
+                "hostingModel": "DisconnectedContainer",
+                "planType": "TA",
+                "autoRenew": true
+            }
+        },
+        "isCommitmentPlanForSummarizationEnabled": {
+            "value": false
+        },
+        "commitmentPlanForSummarization": {
+            "value": {
+                "current": {},
+                "hostingModel": "DisconnectedContainer",
+                "planType": "Summarization",
+                "autoRenew": true
+            }
+        },
+        "privateDnsZone": {
+            "value": "[$item.privateDnsZoneConfiguration.integrateWithPrivateDnsZone]"
+        }
+    }
+}
