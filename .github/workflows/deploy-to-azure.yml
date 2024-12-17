@@ -31,8 +31,9 @@ jobs:
         resourceGroupName: rg-calltranscription
         template: ./bicep/main.bicep
         parameters: >
-          location='uksouth'
-          speechServiceName='dp-AI-speech'
-          skuName='F0'
+          location="uksouth"
+          speechServiceName="dp-AI-speech"
+          skuName="F0"
           enableManagedIdentity=true
+
         failOnStdErr: false

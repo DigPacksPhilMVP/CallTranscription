@@ -1,6 +1,3 @@
-@description('The name of the Resource Group')
-param resourceGroupName string = 'rg-calltranscription'
-
 @description('The location for all resources')
 param location string = 'uksouth'
 
