@@ -18,8 +18,14 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Create Resource Group
+      run: |
+        az group create \
+          --name rg-calltranscription \
+          --location uksouth
+
     - name: Deploy Bicep Template
-      uses: azure/arm-deploy@v1
+      uses: azure/arm-deploy@v1.0.0
       with:
         subscriptionId: 4f203997-0a6d-4f66-934b-7a51ea90e3b9
         resourceGroupName: rg-calltranscription
