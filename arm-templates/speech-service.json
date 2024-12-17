@@ -22,39 +22,24 @@
       "metadata": {
         "description": "The pricing tier for the Azure Speech service."
       }
-    },
-    "identity": {
-      "type": "object",
-      "defaultValue": {
-        "type": "SystemAssigned"
-      },
-      "metadata": {
-        "description": "System-assigned managed identity configuration."
-      }
-    },
-    "virtualNetworkType": {
-      "type": "string",
-      "defaultValue": "None",
-      "metadata": {
-        "description": "The virtual network integration type."
-      }
     }
   },
   "resources": [
     {
       "type": "Microsoft.CognitiveServices/accounts",
-      "apiVersion": "2023-05-01",
+      "apiVersion": "2022-12-01",
       "name": "[parameters('name')]",
       "location": "[parameters('location')]",
+      "kind": "Speech",
       "sku": {
         "name": "[parameters('sku')]"
       },
-      "kind": "Speech",
       "properties": {
-        "publicNetworkAccess": "Enabled",
-        "virtualNetworkType": "[parameters('virtualNetworkType')]"
+        "publicNetworkAccess": "Enabled"
       },
-      "identity": "[parameters('identity')]"
+      "identity": {
+        "type": "SystemAssigned"
+      }
     }
   ],
   "outputs": {
