@@ -1,4 +1,4 @@
-name: Deploy to Azure
+name: Deploy Azure Speech Service
 
 on:
   push:
@@ -24,15 +24,15 @@ jobs:
           --name rg-calltranscription \
           --location uksouth
 
-    - name: Deploy Bicep Template
-      uses: azure/arm-deploy@v1.0.0
+    - name: Deploy ARM Template
+      uses: azure/arm-deploy@v1
       with:
-        scope: resourcegroup
+        scope: resourceGroup
         subscriptionId: 4f203997-0a6d-4f66-934b-7a51ea90e3b9
         resourceGroupName: rg-calltranscription
-        template: ./bicep/main.json
+        template: ./arm-templates/speech-service.json
         parameters: >
-          location="uksouth"
-          speechServiceName="dp-AI-speech"
-          skuName="F0"
+          location="uksouth" 
+          speechServiceName="dp-AI-speech" 
+          skuName="F0" 
           enableManagedIdentity=true
