@@ -27,12 +27,11 @@ jobs:
     - name: Deploy ARM Template
       uses: azure/arm-deploy@v1
       with:
-        scope: resourcegroup
+        scope: resourceGroup
         subscriptionId: 4f203997-0a6d-4f66-934b-7a51ea90e3b9
         resourceGroupName: rg-calltranscription
         template: ./arm-templates/speech-service.json
         parameters: >
+          name="dpspeechservice" 
           location="uksouth" 
-          speechServiceName="dp-AI-speech" 
-          skuName="F0" 
-          enableManagedIdentity=true
+          sku="F0"
