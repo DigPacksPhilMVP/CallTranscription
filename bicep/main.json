@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.31.92.45157",
+      "templateHash": "4272257673781164926"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "uksouth",
+      "metadata": {
+        "description": "The location for all resources"
+      }
+    },
+    "speechServiceName": {
+      "type": "string",
+      "defaultValue": "dp-AI-speech",
+      "metadata": {
+        "description": "The name of the Azure Speech service"
+      }
+    },
+    "skuName": {
+      "type": "string",
+      "defaultValue": "F0",
+      "metadata": {
+        "description": "The pricing tier for Azure Speech"
+      }
+    },
+    "enableManagedIdentity": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Enable System-assigned Managed Identity"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.CognitiveServices/accounts",
+      "apiVersion": "2023-05-01",
+      "name": "[parameters('speechServiceName')]",
+      "location": "[parameters('location')]",
+      "kind": "Speech",
+      "sku": {
+        "name": "[parameters('skuName')]"
+      },
+      "properties": {
+        "publicNetworkAccess": "Enabled"
+      },
+      "identity": "[if(parameters('enableManagedIdentity'), createObject('type', 'SystemAssigned'), null())]"
+    }
+  ],
+  "outputs": {
+    "speechServiceId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.CognitiveServices/accounts', parameters('speechServiceName'))]"
+    }
+  }
+}

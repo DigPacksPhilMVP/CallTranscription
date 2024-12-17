@@ -30,7 +30,7 @@ jobs:
         scope: resourcegroup
         subscriptionId: 4f203997-0a6d-4f66-934b-7a51ea90e3b9
         resourceGroupName: rg-calltranscription
-        template: ./bicep/main.bicep
+        template: ./bicep/main.json
         parameters: >
           location="uksouth"
           speechServiceName="dp-AI-speech"
