@@ -11,5 +11,5 @@ This wiki lays out the solution architecture and design patterns utilised to ach
 
 The deployment of the Azure services above is undertaken via infrastructure-as-code (IaC) using GitHub Actions, as opposed to manual creation of services within the Azure Portal. 
 
-
+Visit this repository's Wiki for further information and step-by-step guides.
 ***
