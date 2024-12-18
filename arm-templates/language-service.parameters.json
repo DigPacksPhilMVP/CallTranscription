@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
-            "value": "langservdigpacks"
+            "value": "ls-1812240908"
         },
         "location": {
             "value": "uksouth"
