@@ -42,6 +42,17 @@ jobs:
           parameters: ./arm-templates/language-service.parameters.json
           deploymentMode: Incremental
 
+      # Step 5: Deploy storage account
+      - name: Deploy Storage Account
+        uses: azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: rg-calltranscription
+          template: ./arm-templates/storage-account.json
+          parameters: ./arm-templates/storage-account.parameters.json
+          deploymentMode: Incremental
+
       # Step 5: Validate Deployment
       - name: Validate Deployment
         run: |
