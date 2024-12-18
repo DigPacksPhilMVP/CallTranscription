@@ -53,7 +53,7 @@ jobs:
           parameters: ./arm-templates/storage-account.parameters.json
           deploymentMode: Incremental
 
-      # Step 5: Validate Deployment
+      # Step 6: Validate Deployment
       - name: Validate Deployment
         run: |
-          echo "Speech and Language Services deployed successfully!"
+          echo "Blob Storage Account, Speech and Language Services deployed successfully!"
