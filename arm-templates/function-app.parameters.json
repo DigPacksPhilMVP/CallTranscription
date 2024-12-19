@@ -6,7 +6,7 @@
             "value": "4f203997-0a6d-4f66-934b-7a51ea90e3b9"
         },
         "name": {
-            "value": "fa-1912241458"
+            "value": "fa-1912242135"
         },
         "location": {
             "value": "UK South"
@@ -15,7 +15,7 @@
             "value": "FtpsOnly"
         },
         "storageAccountName": {
-            "value": "sa1812240914"
+            "value": "rgcalltranscription9b04"
         },
         "sku": {
             "value": "Dynamic"
@@ -45,10 +45,10 @@
             "value": "main"
         },
         "oidcUserIdentityName": {
-            "value": "fa-1912241458-id-a970"
+            "value": "fa-1912242135-id-ac5a"
         },
         "hostingPlanName": {
-            "value": "ASP-rgcalltranscription-902d"
+            "value": "ASP-rgcalltranscription-ad91"
         },
         "serverFarmResourceGroup": {
             "value": "rg-calltranscription"

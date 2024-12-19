@@ -58,7 +58,7 @@
         }
     },
     "variables": {
-        "contentShare": "fa-19122414589720"
+        "contentShare": "fa-1912242135bb6a"
     },
     "resources": [
         {
@@ -68,11 +68,12 @@
             "kind": "functionapp,linux",
             "location": "[parameters('location')]",
             "tags": {
-                "hidden-link: /app-insights-resource-id": "/subscriptions/4f203997-0a6d-4f66-934b-7a51ea90e3b9/resourceGroups/rg-calltranscription/providers/Microsoft.Insights/components/fa-1912241458"
+                "hidden-link: /app-insights-resource-id": "/subscriptions/4f203997-0a6d-4f66-934b-7a51ea90e3b9/resourceGroups/rg-calltranscription/providers/Microsoft.Insights/components/fa-1912242135"
             },
             "dependsOn": [
-                "microsoft.insights/components/fa-1912241458",
-                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+                "microsoft.insights/components/fa-1912242135",
+                "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
             ],
             "properties": {
                 "name": "[parameters('name')]",
@@ -88,15 +89,15 @@
                         },
                         {
                             "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-                            "value": "[reference('microsoft.insights/components/fa-1912241458', '2015-05-01').ConnectionString]"
+                            "value": "[reference('microsoft.insights/components/fa-1912242135', '2015-05-01').ConnectionString]"
                         },
                         {
                             "name": "AzureWebJobsStorage",
-                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listKeys(resourceId('4f203997-0a6d-4f66-934b-7a51ea90e3b9','rg-calltranscription','Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
                         },
                         {
                             "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listKeys(resourceId('4f203997-0a6d-4f66-934b-7a51ea90e3b9','rg-calltranscription','Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('storageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')), '2019-06-01').keys[0].value,';EndpointSuffix=','core.windows.net')]"
                         },
                         {
                             "name": "WEBSITE_CONTENTSHARE",
@@ -166,8 +167,7 @@
                                     "runtimeVersion": "3.11",
                                     "resourceGroup": "rg-calltranscription",
                                     "clientId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('oidcUserIdentityName')), '2018-11-30').clientId]",
-                                    "tenantId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('oidcUserIdentityName')), '2018-11-30').tenantId]",
-                                    "isRemoveEnvEnabled": true
+                                    "tenantId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('oidcUserIdentityName')), '2018-11-30').tenantId]"
                                 }
                             }
                         }
@@ -201,7 +201,7 @@
                             "api://AzureADTokenExchange"
                         ],
                         "issuer": "https://token.actions.githubusercontent.com",
-                        "subject": "repo:DigPacksPhilMVP/CallTranscription:ref:refs/heads/main"
+                        "subject": "repo:DigPacksPhilMVP/CallTranscription:environment:Production"
                     }
                 }
             ]
@@ -243,7 +243,7 @@
         },
         {
             "apiVersion": "2020-02-02-preview",
-            "name": "fa-1912241458",
+            "name": "fa-1912242135",
             "type": "microsoft.insights/components",
             "location": "uksouth",
             "tags": null,
@@ -256,6 +256,23 @@
                 "Flow_Type": "Redfield",
                 "Application_Type": "web",
                 "WorkspaceResourceId": "/subscriptions/4f203997-0a6d-4f66-934b-7a51ea90e3b9/resourceGroups/DefaultResourceGroup-SUK/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-4f203997-0a6d-4f66-934b-7a51ea90e3b9-SUK"
+            }
+        },
+        {
+            "apiVersion": "2022-05-01",
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[parameters('storageAccountName')]",
+            "dependsOn": [],
+            "location": "[parameters('location')]",
+            "tags": null,
+            "sku": {
+                "name": "Standard_LRS"
+            },
+            "properties": {
+                "supportsHttpsTrafficOnly": true,
+                "minimumTlsVersion": "TLS1_2",
+                "defaultToOAuthAuthentication": true,
+                "allowBlobPublicAccess": false
             }
         },
         {

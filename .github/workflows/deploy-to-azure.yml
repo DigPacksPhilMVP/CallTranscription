@@ -42,7 +42,7 @@ jobs:
           parameters: ./arm-templates/language-service.parameters.json
           deploymentMode: Incremental
 
-      # Step 5: Deploy Storage Account
+      # Step 5: Deploy Existing Storage Account
       - name: Deploy Storage Account
         uses: azure/arm-deploy@v1
         with:
@@ -54,22 +54,15 @@ jobs:
           deploymentMode: Incremental
 
       # Step 6: Deploy Function App
-      - name: Create Missing Resource Group
-        run: |
-            az group create \
-            --name DefaultResourceGroup-SUK \
-            --location uksouth
-
       - name: Deploy Function App ARM Template
         uses: azure/arm-deploy@v1
         with:
-            scope: resourcegroup
-            subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-            resourceGroupName: rg-calltranscription
-            template: ./arm-templates/function-app.json
-            parameters: ./arm-templates/function-app.parameters.json
-            deploymentMode: Incremental
-
+          scope: resourcegroup
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: rg-calltranscription
+          template: ./arm-templates/function-app.json
+          parameters: ./arm-templates/function-app.parameters.json
+          deploymentMode: Incremental
 
       # Step 7: Validate Deployment
       - name: Validate Deployment
